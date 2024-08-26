@@ -9,35 +9,38 @@ body {
     min-height: 100vh;
     background: #1e1e1e;
     color: #fff;
+    overflow: hidden; /* Ensures no scrollbars */
 }
 
 .background-blur {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    transform: translate(-50%, -50%);
     z-index: -1;
+    border-radius: 20px; /* Smoothens the edges */
 }
 
 .container {
-    max-width: 900px;
+    max-width: 700px; /* Reduced for better centering */
     width: 100%;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px; /* Increased padding for breathing room */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Increased shadow for depth */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     text-align: center;
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #f1f1f1;
+    font-size: 3em; /* Larger for emphasis */
+    margin-bottom: 30px; /* Increased margin for spacing */
+    color: #ff5722; /* Matches the button color */
 }
 
 /* Code Block Styles */
@@ -50,48 +53,58 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2d2d2d;
-    padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border: 1px solid #444;
+    background-color: #333; /* Darkened for contrast */
+    padding: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 1px solid #555; /* Increased contrast */
     border-bottom: none;
 }
 
 .code-block {
     margin: 0;
-    padding: 20px;
+    padding: 25px; /* More padding for comfort */
     background-color: #2d2d2d;
-    border: 1px solid #444;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border: 1px solid #555;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     font-size: 1em;
     overflow-x: auto;
 }
 
+/* Hover Effects for Buttons */
 .run-button {
-    padding: 5px 15px;
-    font-size: 14px;
+    padding: 8px 20px; /* Larger buttons for accessibility */
+    font-size: 16px;
     cursor: pointer;
     background-color: #ff5722;
     color: white;
     border: none;
-    border-radius: 3px;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smoother hover effect */
+    box-shadow: 0 2px 10px rgba(255, 87, 34, 0.3); /* Added shadow for emphasis */
 }
 
 .run-button:hover {
-    background-color: #e64a19;
+    background-color: #ff7043; /* Lighter shade on hover */
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 4px 20px rgba(255, 87, 34, 0.5); /* More shadow on hover */
 }
 
 .output-container {
     margin-top: 20px;
     text-align: left;
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid #444;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: #222; /* Darkened background for contrast */
+    padding: 25px; /* More padding */
+    border-radius: 8px; /* Smoothened edges */
+    border: 1px solid #555; /* Increased contrast */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+    transition: all 0.3s ease; /* Smoother transitions */
+}
+
+.output-container:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5); /* More shadow on hover */
 }
 
 .output-container h2 {
@@ -101,12 +114,14 @@ h1 {
 
 .output-block {
     margin: 0;
-    padding: 10px;
+    padding: 15px; /* Slightly more padding */
     background-color: #2d2d2d;
     border-radius: 5px;
-    border: 1px solid #444;
+    border: 1px solid #555; /* Enhanced border for visibility */
     color: #e0e0e0;
     white-space: pre-wrap;
     font-family: 'Courier New', Courier, monospace;
     overflow-x: auto;
+    max-height: 200px; /* Restrict height to avoid overflow */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
