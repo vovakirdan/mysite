@@ -1,70 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 20px;
 }
+
 .container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
     max-width: 800px;
-    padding: 20px;
-    margin: auto;
+    margin: 0 auto;
 }
+
 h1 {
-    font-size: 2em;
-    color: #333;
     text-align: center;
 }
-p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    text-align: center;
+
+button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    font-size: 16px;
 }
-.code-block {
-    position: relative;
-    background-color: #272822; /* Цвет фона */
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: 'Courier New', Courier, monospace;
-    color: #f8f8f2; /* Цвет текста */
-}
-.run-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 5px 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.run-button:hover {
-    background-color: #0056b3;
-}
-#output {
-    margin-top: 20px;
+
+pre {
+    background-color: #f4f4f4;
     padding: 10px;
-    background-color: #f8f8f8;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    white-space: pre-wrap;
-}
-.social-links {
-    text-align: center;
-    margin-top: 20px;
-}
-.social-links a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #007BFF;
+    border: 1px solid #ccc;
+    overflow-x: auto;
 }

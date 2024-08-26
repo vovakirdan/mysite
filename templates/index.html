@@ -1,53 +1,52 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личная страница - Fullstack разработчик</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Run Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Здравствуйте, я Fullstack разработчик</h1>
-        <p>Меня зовут [Ваше имя]. Я увлекаюсь программированием и специализируюсь на создании веб-приложений. Моя цель - находить интересные задачи и решать их с помощью кода.</p>
+        <h1>Run Code from Webpage</h1>
         
-        <div class="code-section">
-            <h2>Пример моего кода:</h2>
-            
-            <!-- Python code block -->
-            <div class="code-block">
-                <button class="run-button" onclick="runCode(`{{ python_code | safe }}`, 'python')">Run Code</button>
-                <pre><code>{{ python_code }}</code></pre>
-            </div>
+        <div>
+            <button id="run-python">Run Python Code</button>
+            <pre id="python-output"></pre>
+        </div>
 
-            <!-- C code block -->
-            <div class="code-block">
-                <button class="run-button" onclick="runCode(`{{ c_code | safe }}`, 'c')">Run Code</button>
-                <pre><code>{{ c_code }}</code></pre>
-            </div>
-        </div>     
-        <div id="output"></div>
+        <div>
+            <button id="run-c">Run C Code</button>
+            <pre id="c-output"></pre>
+        </div>
+    </div>
+
     <script>
-        function runCode(code, language) {
-        fetch('/run_code', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                code: code,
-                language: language
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('output').innerText = data.output || data.error;
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-            document.getElementById('output').innerText = 'Произошла ошибка при выполнении кода';
+        document.getElementById('run-python').addEventListener('click', function() {
+            fetch('/run_python_code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('python-output').textContent = data.output || data.error;
+            });
         });
-    }
+
+        document.getElementById('run-c').addEventListener('click', function() {
+            fetch('/run_c_code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('c-output').textContent = data.output || data.error;
+            });
+        });
     </script>
 </body>
 </html>
