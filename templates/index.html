@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личная страница - Fullstack разработчик</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Здравствуйте, я Fullstack разработчик</h1>
+        <p>Меня зовут [Ваше имя]. Я увлекаюсь программированием и специализируюсь на создании веб-приложений. Моя цель - находить интересные задачи и решать их с помощью кода.</p>
+        
+        <div class="code-section">
+            <h2>Пример моего кода:</h2>
+            
+            <!-- Python code block -->
+            <div class="code-block">
+                <button class="run-button" onclick="runCode(`{{ python_code | safe }}`, 'python')">Run Code</button>
+                <pre><code>{{ python_code }}</code></pre>
+            </div>
+
+            <!-- C code block -->
+            <div class="code-block">
+                <button class="run-button" onclick="runCode(`{{ c_code | safe }}`, 'c')">Run Code</button>
+                <pre><code>{{ c_code }}</code></pre>
+            </div>
+        </div>     
+        <div id="output"></div>
+    <script>
+        function runCode(code, language) {
+        fetch('/run_code', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                code: code,
+                language: language
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('output').innerText = data.output || data.error;
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            document.getElementById('output').innerText = 'Произошла ошибка при выполнении кода';
+        });
+    }
+    </script>
+</body>
+</html>
