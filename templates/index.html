@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Run Code</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
+    <div class="background-blur"></div>
     <div class="container">
-        <h1>Run Code from Webpage</h1>
+        <h1>Code Runner</h1>
 
         <div class="code-container">
             <div class="code-header">
                 <span>Python Code</span>
                 <button class="run-button" id="run-python">Run</button>
             </div>
-            <pre><code class="language-python">{{ python_code }}</code></pre>
-            <pre id="python-output"></pre>
+            <pre class="code-block"><code class="language-python">{{ python_code }}</code></pre>
+            <div class="output-container">
+                <h2>Output:</h2>
+                <pre id="python-output" class="output-block"></pre>
+            </div>
         </div>
 
         <div class="code-container">
@@ -25,8 +29,11 @@
                 <span>C Code</span>
                 <button class="run-button" id="run-c">Run</button>
             </div>
-            <pre><code class="language-c">{{ c_code }}</code></pre>
-            <pre id="c-output"></pre>
+            <pre class="code-block"><code class="language-c">{{ c_code }}</code></pre>
+            <div class="output-container">
+                <h2>Output:</h2>
+                <pre id="c-output" class="output-block"></pre>
+            </div>
         </div>
     </div>
 
