@@ -11,7 +11,7 @@ def index():
     with open(os.path.join(SOURCE_PATH, 'code.py'), 'r') as py_file:
         python_code = py_file.read()
 
-    with open(os.path.join(SOURCE_PATH, 'code.c'), 'r') as c_file:
+    with open(os.path.join(SOURCE_PATH, 'code1.c'), 'r') as c_file:
         c_code = c_file.read()
 
     return render_template('index.html', python_code=python_code, c_code=c_code)
