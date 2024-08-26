@@ -74,12 +74,29 @@
                 let r = _t.getBoundingClientRect();
                 ['x', 'y'].forEach(c => 
                     _t.style.setProperty(`--${c}`, 
-                                                            `${e[`client${c.toUpperCase()}`] - r[c]}px`))
+                `${e[`client${c.toUpperCase()}`] - r[c]}px`))
             }
         }
 
         addEventListener('mouseover', update_position);
-        addEventListener('mouseout', update_position)
+        addEventListener('mouseout', update_position);
+        const codeBlocks = document.querySelectorAll('.code-block');
+
+        codeBlocks.forEach(block => {
+            const resizeFont = () => {
+                let fontSize = 16; // Starting font size in pixels
+                block.style.fontSize = fontSize + 'px';
+                
+                while (block.scrollWidth > block.clientWidth && fontSize > 8) { // Decrease font size while it overflows
+                    fontSize--;
+                    block.style.fontSize = fontSize + 'px';
+                }
+            };
+
+            resizeFont();
+            window.addEventListener('resize', resizeFont); // Adjust font size on window resize
+        });
+
     </script>
 </body>
 </html>
