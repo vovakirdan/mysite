@@ -12,9 +12,14 @@ def index():
         python_code = py_file.read()
 
     with open(os.path.join(SOURCE_PATH, 'code1.c'), 'r') as c_file:
-        c_code = c_file.read()
+        c_code_1 = c_file.read()
 
-    return render_template('index.html', python_code=python_code, c_code=c_code)
+    with open(os.path.join(SOURCE_PATH, 'code2.c'), 'r') as c_file:
+        c_code_2 = c_file.read()
+
+    return render_template('index.html', python_code=python_code,
+                            c_code_1=c_code_1,
+                              c_code_2=c_code_2)
 
 @app.route('/run_python_code', methods=['POST'])
 def run_python_code():
