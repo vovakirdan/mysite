@@ -9,11 +9,11 @@ body {
     min-height: 100vh;
     background: #1e1e1e;
     color: #fff;
-    overflow: hidden; /* Ensures no scrollbars */
+    overflow: auto; /* Ensures no scrollbars */
 }
 
 .background-blur {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 120%;
