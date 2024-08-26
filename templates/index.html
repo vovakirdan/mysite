@@ -5,21 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Run Code</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
 </head>
 <body>
     <div class="container">
         <h1>Run Code from Webpage</h1>
-        
-        <div>
-            <button id="run-python">Run Python Code</button>
+
+        <div class="code-container">
+            <div class="code-header">
+                <span>Python Code</span>
+                <button class="run-button" id="run-python">Run</button>
+            </div>
+            <pre><code class="language-python">{{ python_code }}</code></pre>
             <pre id="python-output"></pre>
         </div>
 
-        <div>
-            <button id="run-c">Run C Code</button>
+        <div class="code-container">
+            <div class="code-header">
+                <span>C Code</span>
+                <button class="run-button" id="run-c">Run</button>
+            </div>
+            <pre><code class="language-c">{{ c_code }}</code></pre>
             <pre id="c-output"></pre>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 
     <script>
         document.getElementById('run-python').addEventListener('click', function() {

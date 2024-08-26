@@ -4,12 +4,17 @@ import os
 
 app = Flask(__name__)
 
-# Path to the source code files
 SOURCE_PATH = os.path.join(os.getcwd(), 'source_code')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with open(os.path.join(SOURCE_PATH, 'code.py'), 'r') as py_file:
+        python_code = py_file.read()
+
+    with open(os.path.join(SOURCE_PATH, 'code.c'), 'r') as c_file:
+        c_code = c_file.read()
+
+    return render_template('index.html', python_code=python_code, c_code=c_code)
 
 @app.route('/run_python_code', methods=['POST'])
 def run_python_code():
@@ -24,10 +29,8 @@ def run_python_code():
 @app.route('/run_c_code', methods=['POST'])
 def run_c_code():
     try:
-        # Compile the C code
         subprocess.check_output(['gcc', os.path.join(SOURCE_PATH, 'code.c'), '-o', 'code.out'],
                                 stderr=subprocess.STDOUT)
-        # Run the compiled C code
         output = subprocess.check_output(['./code.out'], stderr=subprocess.STDOUT, universal_newlines=True)
         return jsonify({'output': output})
     except subprocess.CalledProcessError as e:
